@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  app1:
+    image: nginx:alpine
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.5
+    ports:
+      - "8000:80"
+    volumes:
+      - ./app:/usr/share/nginx/html
+    networks:
+     - app1_net
+  app2:
+    image: nginx:alpine
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.5
+    ports:
+      - "8001:80"
+    volumes:
+      - ./app:/usr/share/nginx/html
+    networks:
+      - app2_net
+networks:
+  app1_net:
+    driver: bridge
+  app2_net:
+    driver: bridge
